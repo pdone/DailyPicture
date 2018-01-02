@@ -5,12 +5,18 @@ using System.Runtime.InteropServices;  //调用WINDOWS API函数时要用到
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
-using System.Text;
+/*
+ * Author: Pdone
+ * Create Date: 2017-12-31
+ * GitHub: https://github.com/pdone/DailyPicture
+ * Weibo: https://weibo.com/pdone/
+*/
 
 namespace DailyPicture
 {
     public partial class Main : Form
     {
+        public string verInfo = "当前版本：1.2.1\n\r更新日期：2018.01.02\n\r开发人员：pdone\n\r图片来源：Bing 每日一图";
         public string bingUrl = "http://cn.bing.com/";
         public string setFileName = DateTime.Now.ToString("yyyyMMdd") + ".jpg";
         public static string savePath = Application.StartupPath + "\\images\\";
@@ -280,7 +286,6 @@ namespace DailyPicture
 
         private void about_Click(object sender, EventArgs e)
         {
-            string verInfo = "当前版本：1.2.1\n\r更新日期：2018.01.02\n\r开发人员：pdone\n\r图片来源：Bing 每日一图";
             MessageBox.Show(verInfo, "关于");
         }
 
