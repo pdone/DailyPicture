@@ -16,11 +16,12 @@ namespace DailyPicture
 {
     public partial class Main : Form
     {
-        public string verInfo = "当前版本：1.2.1\n\r更新日期：2018.01.02\n\r开发人员：pdone\n\r图片来源：Bing 每日一图";
+        public string verInfo = "当前版本：1.3.0\n\r更新日期：2018.01.05\n\r开发人员：pdone\n\r图片来源：Bing 每日一图";
         public string bingUrl = "http://cn.bing.com/";
         public string setFileName = DateTime.Now.ToString("yyyyMMdd") + ".jpg";
         public static string savePath = Application.StartupPath + "\\images\\";
         JObject jo = new JObject();
+         
         public Main()
         {
             InitializeComponent();
@@ -33,11 +34,10 @@ namespace DailyPicture
                 DateTime localTime = DateTime.Now;
                 TimeSpan sp = localTime.Subtract(internetTime);
                 int days = (internetTime - localTime).Days;//对比本地时间差
-
                 var apiUrl = getApiUrl(days, 5);//获取5天的图片地址
                 var jsonStr = getRequest(apiUrl);
                 jo = JObject.Parse(jsonStr);
-                init(days, 5);//初始化
+                init(5);//初始化             
             }
             catch (WebException)
             {
@@ -152,18 +152,13 @@ namespace DailyPicture
         /// <param name="day"></param>
         /// <param name="count"></param>
         /// <param name="initType"></param>
-        public void init(int day, int count, int initType = 1)
+        public void init(int count, int initType = 1)
         {
             for (int i = 0; i < count; i++)
             {
                 //缓存今天到五天前的图片
                 SaveImageFromWeb(bingUrl + jo["images"][i]["url"].ToString(), jo["images"][i]["enddate"].ToString());
             }
-            //PicBox1.Image = Image.FromFile(savePath + DateTime.Now.AddDays(0 - day).ToString("yyyyMMdd") + ".jpg");
-            //PicBox2.Image = Image.FromFile(savePath + DateTime.Now.AddDays(-1 - day).ToString("yyyyMMdd") + ".jpg");
-            //PicBox3.Image = Image.FromFile(savePath + DateTime.Now.AddDays(-2 - day).ToString("yyyyMMdd") + ".jpg");
-            //PicBox4.Image = Image.FromFile(savePath + DateTime.Now.AddDays(-3 - day).ToString("yyyyMMdd") + ".jpg");
-            //PicBox5.Image = Image.FromFile(savePath + DateTime.Now.AddDays(-4 - day).ToString("yyyyMMdd") + ".jpg");
             PicBox1.Image = Image.FromFile(savePath + jo["images"][0]["enddate"].ToString() + ".jpg");
             PicBox2.Image = Image.FromFile(savePath + jo["images"][1]["enddate"].ToString() + ".jpg");
             PicBox3.Image = Image.FromFile(savePath + jo["images"][2]["enddate"].ToString() + ".jpg");
@@ -281,7 +276,7 @@ namespace DailyPicture
         {
             //设置墙纸
             string strSavePath = Application.StartupPath + "\\images\\" + setFileName;
-            SystemParametersInfo(20, 1, strSavePath, 0x1|0x2);
+            SystemParametersInfo(20, 1, strSavePath, 0x1 | 0x2);
         }
 
         private void about_Click(object sender, EventArgs e)
@@ -290,6 +285,7 @@ namespace DailyPicture
         }
 
         int temp = 1;
+        int overFlowTemp = 4;
         private void NextPic_Click(object sender, EventArgs e)
         {
             if (temp < 8)
@@ -297,7 +293,7 @@ namespace DailyPicture
                 var apiUrl = getApiUrl(temp, 5);//获取5天的图片地址
                 var jsonStr = getRequest(apiUrl);
                 jo = JObject.Parse(jsonStr);
-                init(temp, 5, 2);
+                init(5, 2);
                 indexChange(4, PicBox5.Image);
                 temp++;
             }
@@ -315,7 +311,7 @@ namespace DailyPicture
                 var apiUrl = getApiUrl(temp, 5);//获取5天的图片地址
                 var jsonStr = getRequest(apiUrl);
                 jo = JObject.Parse(jsonStr);
-                init(temp, 5, 3);
+                init(5, 3);
                 indexChange(4, PicBox5.Image);
                 temp++;
             }

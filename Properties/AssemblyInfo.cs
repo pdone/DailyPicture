@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Daily Picture")]
 [assembly: AssemblyDescription("Daily Picture")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Unicb")]
+[assembly: AssemblyConfiguration("Release")]
+[assembly: AssemblyCompany("Pdone Technology Co., Ltd.")]
 [assembly: AssemblyProduct("Daily Picture")]
 [assembly: AssemblyCopyright("Copyright © pdone 2018")]
-[assembly: AssemblyTrademark("Unicb")]
+[assembly: AssemblyTrademark("Pdone")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
@@ -34,6 +34,6 @@ using System.Runtime.InteropServices;
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.2.1")]
+[assembly: AssemblyFileVersion("1.3.0")]
 [assembly: NeutralResourcesLanguage("")]
 

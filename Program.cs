@@ -14,7 +14,7 @@ namespace DailyPicture
         static void Main()
         {
             try
-            {
+            {            
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Main());
